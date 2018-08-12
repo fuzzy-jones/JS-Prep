@@ -113,3 +113,39 @@
       console.log("price per sqft: " + house.getPricePerSquareFoot());
 
     console.log("--------------------------");
+
+
+
+
+// Singly or Doubly invoked functions
+      console.log("--SINGLE OR DOUBLE INVOKED FUNCTION--");
+
+    //   function that will get the total indifferent to way the args are passed when function is called. doesnt take arguments in
+      function getTotal() {
+        // set a variable called 'arg' that 
+        // Array.prototype creates a new array and prototype creates a new property in that array
+        // slice will create a copy of the array
+        // call bind the context of slice method to arguments passed. will call the method that is slicing the arguments out of the array
+        // arguments is built in javascript (array like object), gives access to whatever arguments are passed in, dont need to define arguments when function is written
+        var args = Array.prototype.slice.call(arguments);
+        
+        // if there are 2 arguments in one parenthesis, add the each by the index of which they are in the array created above
+        if (args.length === 2) {
+            return args[0] + args[1];
+        }
+        // else if there are single arguments, curry the numbers
+        else if (args.length === 1) {
+            return function(num2) {
+                return args[0] + num2;
+          };
+        }
+      }
+       
+      console.log(getTotal(10, 20));
+      console.log(getTotal(5, 40));
+      console.log(getTotal(3)(30));
+      console.log(getTotal(8)(12));
+
+      console.log("--------------------------");
+      
+
